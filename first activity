@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class SimpleArrayMenu {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Ask for array size
+        System.out.print("Enter how many numbers the array can hold: ");
+        int size = input.nextInt();
+
+        int[] numbers = new int[size];
+        int itemCount = 0; // how many numbers are currently stored
+
+        while (true) {
+            // Show menu
+            System.out.println("\n--- MENU ---");
+            System.out.println("1. Add a number");
+            System.out.println("2. Delete a number");
+            System.out.println("3. Search a number");
+            System.out.println("4. Show all numbers");
+            System.out.println("5. Exit");
+            System.out.print("Choose an option: ");
+            int choice = input.nextInt();
+
+            if (choice == 1) { // Add
+                if (itemCount == size) {
+                    System.out.println("The array is full! Can't add more.");
+                } else {
+                    System.out.print("Enter a number to add: ");
+                    numbers[itemCount] = input.nextInt();
+                    itemCount++;
+                    System.out.println("Number added!");
+                }
+
+            } else if (choice == 2) { // Delete
+                if (itemCount == 0) {
+                    System.out.println("The array is empty!");
+                } else {
+                    System.out.print("Enter the number to delete: ");
+                    int del = input.nextInt();
+                    boolean found = false;
+                    for (int i = 0; i < itemCount; i++) {
+                        if (numbers[i] == del) {
+                            // shift numbers to remove the deleted one
+                            for (int j = i; j < itemCount - 1; j++) {
+                                numbers[j] = numbers[j + 1];
+                            }
+                            itemCount--;
+                            found = true;
+                            System.out.println("Number deleted!");
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Number not found!");
+                    }
+                }
+
+            } else if (choice == 3) { // Search
+                if (itemCount == 0) {
+                    System.out.println("The array is empty!");
+                } else {
+                    System.out.print("Enter the number to search: ");
+                    int search = input.nextInt();
+                    boolean found = false;
+                    System.out.print("Found at position: ");
+                    for (int i = 0; i < itemCount; i++) {
+                        if (numbers[i] == search) {
+                            System.out.print((i + 1) + " ");
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Number not found!");
+                    } else {
+                        System.out.println();
+                    }
+                }
+
+            } else if (choice == 4) { // Display
+                if (itemCount == 0) {
+                    System.out.println("The array is empty!");
+                } else {
+                    System.out.print("Numbers in array: ");
+                    for (int i = 0; i < itemCount; i++) {
+                        System.out.print(numbers[i] + " ");
+                    }
+                    System.out.println();
+                }
+
+            } else if (choice == 5) { // Exit
+                System.out.println("Goodbye!");
+                break;
+
+            } else {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+        input.close();
+    }
+}
