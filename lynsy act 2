@@ -1,0 +1,161 @@
+My pocket Wifi
+import java.util.Scanner;
+
+public class ArrayMenuProgram {
+
+    // ================= MAIN PROGRAM =================
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) { // infinite loop until Exit
+            System.out.println("\n===== ARRAY MENU =====");
+            System.out.println("1. Basic Array Input & Output (5 integers)");
+            System.out.println("2. Sum and Average of Array Elements (10 integers)");
+            System.out.println("3. Find Maximum and Minimum (n integers)");
+            System.out.println("4. Reverse an Array (n integers)");
+            System.out.println("5. Count Even and Odd Numbers (n integers)");
+            System.out.println("6. Linear Search (n integers + key)");
+            System.out.println("7. Frequency of Elements (n integers)");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1 -> basicArrayIO(sc);
+                case 2 -> sumAndAverage(sc);
+                case 3 -> findMinMax(sc);
+                case 4 -> reverseArray(sc);
+                case 5 -> countEvenOdd(sc);
+                case 6 -> linearSearch(sc);
+                case 7 -> frequencyCount(sc);
+                case 0 -> {
+                    System.out.println("Exiting program...");
+                    sc.close();
+                    return; // exit main directly
+                }
+                default -> System.out.println("Invalid choice, try again!");
+            }
+        }
+    }
+
+    // ================= METHODS =================
+
+    // 1. Basic Array Input & Output
+    public static void basicArrayIO(Scanner sc) {
+        int[] arr = new int[5];
+        System.out.println("Enter 5 integers:");
+        for (int i = 0; i < 5; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.print("Output → ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    // 2. Sum and Average of Array Elements
+    public static void sumAndAverage(Scanner sc) {
+        int[] arr = new int[10];
+        System.out.println("Enter 10 numbers:");
+        for (int i = 0; i < 10; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int sum = 0;
+        for (int num : arr) sum += num;
+        double avg = (double) sum / arr.length;
+        System.out.println("Sum = " + sum + ", Average = " + avg);
+    }
+
+    // 3. Find Maximum and Minimum
+    public static void findMinMax(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        int min = arr[0], max = arr[0];
+        for (int num : arr) {
+            if (num < min) min = num;
+            if (num > max) max = num;
+        }
+        System.out.println("Min = " + min + ", Max = " + max);
+    }
+
+    // 4. Reverse an Array
+    public static void reverseArray(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        System.out.print("Reversed Array → ");
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // 5. Count Even and Odd Numbers
+    public static void countEvenOdd(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        int even = 0, odd = 0;
+        for (int num : arr) {
+            if (num % 2 == 0) even++;
+            else odd++;
+        }
+        System.out.println("Even = " + even + ", Odd = " + odd);
+    }
+
+    // 6. Linear Search
+    public static void linearSearch(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        System.out.print("Enter number to search: ");
+        int key = sc.nextInt();
+
+        boolean found = false;
+        for (int num : arr) {
+            if (num == key) {
+                found = true;
+                break;
+            }
+        }
+        if (found) System.out.println(key + " found in array.");
+        else System.out.println(key + " not found in array.");
+    }
+
+    // 7. Frequency of Elements
+    public static void frequencyCount(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        boolean[] visited = new boolean[arr.length];
+        System.out.println("Element Frequencies:");
+        for (int i = 0; i < arr.length; i++) {
+            if (visited[i]) continue;
+            int count = 1;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    visited[j] = true;
+                    count++;
+                }
+            }
+            System.out.println(arr[i] + " → " + count);
+        }
+    }
+}
