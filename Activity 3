@@ -1,0 +1,133 @@
+import java.util.Scanner;
+
+public class ArrayActivity3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            // MENU
+            System.out.println("\n=== ARRAY MENU ===");
+            System.out.println("1 - Union");
+            System.out.println("2 - Addition");
+            System.out.println("3 - Subtraction");
+            System.out.println("4 - Multiplication");
+            System.out.println("5 - Intersection");
+            System.out.println("6 - Difference");
+            System.out.println("0 - Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            if (choice == 0) {
+                System.out.println("Goodbye!");
+                break;
+            }
+
+            // Ask user for first array
+            System.out.print("How many elements in A? ");
+            int n1 = sc.nextInt();
+            int[] A = new int[n1];
+            System.out.println("Enter elements of A:");
+            for (int i = 0; i < n1; i++) {
+                A[i] = sc.nextInt();
+            }
+
+            // Ask user for second array
+            System.out.print("How many elements in B? ");
+            int n2 = sc.nextInt();
+            int[] B = new int[n2];
+            System.out.println("Enter elements of B:");
+            for (int i = 0; i < n2; i++) {
+                B[i] = sc.nextInt();
+            }
+
+            // MENU ACTIONS
+            if (choice == 1) { // UNION
+                System.out.print("Union: ");
+                for (int i = 0; i < n1; i++) {
+                    System.out.print(A[i] + " ");
+                }
+                for (int i = 0; i < n2; i++) {
+                    boolean found = false;
+                    for (int j = 0; j < n1; j++) {
+                        if (B[i] == A[j]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.print(B[i] + " ");
+                    }
+                }
+                System.out.println();
+
+            } else if (choice == 2) { // ADDITION
+                if (n1 != n2) {
+                    System.out.println("Arrays must have the same size!");
+                } else {
+                    System.out.print("Addition: ");
+                    for (int i = 0; i < n1; i++) {
+                        System.out.print((A[i] + B[i]) + " ");
+                    }
+                    System.out.println();
+                }
+
+            } else if (choice == 3) { // SUBTRACTION
+                if (n1 != n2) {
+                    System.out.println("Arrays must have the same size!");
+                } else {
+                    System.out.print("Subtraction: ");
+                    for (int i = 0; i < n1; i++) {
+                        System.out.print((A[i] - B[i]) + " ");
+                    }
+                    System.out.println();
+                }
+
+            } else if (choice == 4) { // MULTIPLICATION
+                if (n1 != n2) {
+                    System.out.println("Arrays must have the same size!");
+                } else {
+                    System.out.print("Multiplication: ");
+                    for (int i = 0; i < n1; i++) {
+                        System.out.print((A[i] * B[i]) + " ");
+                    }
+                    System.out.println();
+                }
+
+            } else if (choice == 5) { // INTERSECTION
+                System.out.print("Intersection: ");
+                for (int i = 0; i < n1; i++) {
+                    for (int j = 0; j < n2; j++) {
+                        if (A[i] == B[j]) {
+                            System.out.print(A[i] + " ");
+                            break;
+                        }
+                    }
+                }
+                System.out.println();
+
+            } else if (choice == 6) { // DIFFERENCE
+                System.out.print("Difference (A - B): ");
+                for (int i = 0; i < n1; i++) {
+                    boolean found = false;
+                    for (int j = 0; j < n2; j++) {
+                        if (A[i] == B[j]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.print(A[i] + " ");
+                    }
+                }
+                System.out.println();
+
+            } else {
+                System.out.println("Invalid choice, try again.");
+            }
+
+        } while (choice != 0);
+
+        sc.close();
+    }
+}
