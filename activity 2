@@ -1,0 +1,142 @@
+import java.util.Scanner;
+
+public class ArrayProgramsMenu {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== ARRAY PROGRAM MENU ===");
+            System.out.println("1. Basic Array Input & Output");
+            System.out.println("2. Sum and Average of Array");
+            System.out.println("3. Find Min and Max");
+            System.out.println("4. Reverse Array");
+            System.out.println("5. Count Even and Odd");
+            System.out.println("6. Linear Search");
+            System.out.println("7. Frequency of Elements");
+            System.out.println("0. Exit");
+            System.out.print("Choose: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1: // Basic Array
+                    int[] num1 = new int[5];
+                    System.out.println("Enter 5 numbers:");
+                    for (int i = 0; i < 5; i++) {
+                        num1[i] = sc.nextInt();
+                    }
+                    System.out.print("You entered: ");
+                    for (int i = 0; i < 5; i++) {
+                        System.out.print(num1[i] + " ");
+                    }
+                    System.out.println();
+                    break;
+
+                case 2: // Sum and Average
+                    int[] num2 = new int[10];
+                    int sum = 0;
+                    System.out.println("Enter 10 numbers:");
+                    for (int i = 0; i < 10; i++) {
+                        num2[i] = sc.nextInt();
+                        sum += num2[i];
+                    }
+                    double avg = (double) sum / 10;
+                    System.out.println("Sum = " + sum);
+                    System.out.println("Average = " + avg);
+                    break;
+
+                case 3: // Min and Max
+                    System.out.print("How many numbers? ");
+                    int n3 = sc.nextInt();
+                    int[] num3 = new int[n3];
+                    System.out.println("Enter numbers:");
+                    for (int i = 0; i < n3; i++) {
+                        num3[i] = sc.nextInt();
+                    }
+                    int min = num3[0], max = num3[0];
+                    for (int i = 0; i < n3; i++) {
+                        if (num3[i] < min) min = num3[i];
+                        if (num3[i] > max) max = num3[i];
+                    }
+                    System.out.println("Min = " + min);
+                    System.out.println("Max = " + max);
+                    break;
+
+                case 4: // Reverse
+                    System.out.print("How many numbers? ");
+                    int n4 = sc.nextInt();
+                    int[] num4 = new int[n4];
+                    System.out.println("Enter numbers:");
+                    for (int i = 0; i < n4; i++) {
+                        num4[i] = sc.nextInt();
+                    }
+                    System.out.println("Reversed order:");
+                    for (int i = n4 - 1; i >= 0; i--) {
+                        System.out.print(num4[i] + " ");
+                    }
+                    System.out.println();
+                    break;
+
+                case 5: // Count Even & Odd
+                    System.out.print("How many numbers? ");
+                    int n5 = sc.nextInt();
+                    int[] num5 = new int[n5];
+                    int even = 0, odd = 0;
+                    System.out.println("Enter numbers:");
+                    for (int i = 0; i < n5; i++) {
+                        num5[i] = sc.nextInt();
+                        if (num5[i] % 2 == 0) even++;
+                        else odd++;
+                    }
+                    System.out.println("Even count = " + even);
+                    System.out.println("Odd count = " + odd);
+                    break;
+
+                case 6: // Linear Search
+                    int[] num6 = {3, 8, 1, 9, 5};
+                    System.out.print("Enter number to search: ");
+                    int key = sc.nextInt();
+                    boolean found = false;
+                    for (int i = 0; i < num6.length; i++) {
+                        if (num6[i] == key) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) System.out.println(key + " is found.");
+                    else System.out.println(key + " is not found.");
+                    break;
+
+                case 7: // Frequency
+                    System.out.print("How many numbers? ");
+                    int n7 = sc.nextInt();
+                    int[] num7 = new int[n7];
+                    boolean[] counted = new boolean[n7];
+                    System.out.println("Enter numbers:");
+                    for (int i = 0; i < n7; i++) {
+                        num7[i] = sc.nextInt();
+                        counted[i] = false;
+                    }
+                    for (int i = 0; i < n7; i++) {
+                        if (counted[i]) continue;
+                        int count = 1;
+                        for (int j = i + 1; j < n7; j++) {
+                            if (num7[i] == num7[j]) {
+                                count++;
+                                counted[j] = true;
+                            }
+                        }
+                        System.out.println(num7[i] + " occurs " + count + " time(s)");
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+
+        } while (choice != 0);
+    }
